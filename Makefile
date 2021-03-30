@@ -19,3 +19,14 @@ start:
 .PHONY: sh
 sh:
 	${RUN_NODE} sh
+
+#
+# Use to deploy your container
+# make deploy-on-docker GITHUB_USERNAME=bob GITHUB_TOKEN=xxxxx DOCKER_REPOSITORY=user/repository/image_name:version
+.PHONY: deploy
+deploy-on-docker:
+	$(MAKE) build
+	echo ${GITHUB_TOKEN} | docker login https://docker.pkg.github.com -u ${GITHUB_USERNAME} --password-stdin
+	docker build . -f docker/node/Dockerfile -t ${DOCKER_REPOSITORY}
+	docker push ${DOCKER_REPOSITORY}
+
