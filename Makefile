@@ -27,6 +27,6 @@ sh:
 deploy-on-docker:
 	$(MAKE) build
 	echo ${GITHUB_TOKEN} | docker login https://docker.pkg.github.com -u ${GITHUB_USERNAME} --password-stdin
-	docker build . -f docker/node/Dockerfile -t ${DOCKER_REPOSITORY}
+	docker build . -f docker/node/Dockerfile -t ${DOCKER_REPOSITORY} --target=prod
 	docker push ${DOCKER_REPOSITORY}
 

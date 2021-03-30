@@ -6,3 +6,5 @@ RUN npm install -g typescript
 RUN npm install -g webpack-cli
 RUN npm link typescript
 
+FROM base as prod
+CMD node dist/index.js
