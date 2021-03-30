@@ -10,7 +10,6 @@ settings:
   users:
     - github_token: <user's github token>
       discord_id: "<user's discord ID>"
-      live_notifications: true
       repositories:
         - bob/test
       scheduled_notifications:
