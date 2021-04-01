@@ -1,3 +1,7 @@
+# Load .env file
+include .env
+export
+
 RUN_NODE = docker-compose run --rm node
 .PHONY: watch
 watch:
@@ -22,11 +26,11 @@ sh:
 
 #
 # Use to deploy your container
-# make deploy-on-docker GITHUB_USERNAME=bob GITHUB_TOKEN=xxxxx DOCKER_REPOSITORY=user/repository/image_name:version
+#
 .PHONY: deploy
 deploy-on-docker:
 	$(MAKE) build
-	echo ${GITHUB_TOKEN} | docker login https://docker.pkg.github.com -u ${GITHUB_USERNAME} --password-stdin
-	docker build . -f docker/node/Dockerfile -t ${DOCKER_REPOSITORY} --target=prod
-	docker push ${DOCKER_REPOSITORY}
+	echo ${DOCKER_PASSWORD} | docker login https://${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} --password-stdin
+	docker build . -f docker/node/Dockerfile -t ${DOCKER_REGISTRY}${DOCKER_REPOSITORY}:${DOCKER_REPOSITORY_VERSION} --target=prod
+	docker push ${DOCKER_REGISTRY}${DOCKER_REPOSITORY}:${DOCKER_REPOSITORY_VERSION}
 
