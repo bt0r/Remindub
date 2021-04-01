@@ -3,3 +3,4 @@ config/config*.yaml
 /dist
 *.DS_Store
 .env*
+!.env.dist
