@@ -30,7 +30,7 @@ const ReminderColor = (delaysInDays: number) => {
   return delaysColors.RED;
 }
 
-export const ReminderMessage = (pullrequest: PullRequest) => {
+export const ReminderMessage = (pullrequest: PullRequest): MessageEmbed => {
   const createdAtFormatted =  dayjs(pullrequest.createdAt).format(config.parameters.settings.date_format)
   const delaysInDays = dayjs(new Date()).diff(pullrequest.createdAt, 'days')
 

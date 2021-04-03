@@ -19,7 +19,7 @@ export interface PullRequest {
 }
 
 export class Github {
-  private apiVersion: string = "application/vnd.github.v3+json";
+  private apiVersion = "application/vnd.github.v3+json";
   private config: Config;
   private readonly defaultHeaders: DefaultHeaders;
 
@@ -30,7 +30,7 @@ export class Github {
     }
   }
 
-  async getUsername(token: string) {
+  async getUsername(token: string): Promise<string|null> {
     const url = `https://api.github.com/user`
     const headers = Object.assign(this.defaultHeaders, {
       Authorization: `token ${token}`

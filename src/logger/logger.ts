@@ -9,6 +9,6 @@ export const logger = winston.createLogger({
   ],
 });
 
-export const userDescription = (discordId: string, githubUsername: string) => {
+export const userDescription = (discordId: string, githubUsername: string): string => {
   return `[Discord: ${discordId}, Github: ${githubUsername}]`;
 }

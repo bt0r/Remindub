@@ -24,6 +24,9 @@ start:
 sh:
 	${RUN_NODE} sh
 
+.PHONY: lint
+lint:
+	${RUN_NODE} npx eslint --fix src/ --ext .ts
 #
 # Use to deploy your container
 #

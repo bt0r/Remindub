@@ -19,7 +19,7 @@ export class DiscordClient {
     });
   }
 
-  sendMessage = (discordId: string, githubUsername: string, pullRequest: PullRequest) => {
+  sendMessage = (discordId: string, githubUsername: string, pullRequest: PullRequest): void => {
     this.client.users.fetch(discordId).then((user) => {
       user
         .send(ReminderMessage(pullRequest))
