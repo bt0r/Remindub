@@ -1,6 +1,7 @@
 # Load .env file
-include .env
+-include .env
 export
+
 
 RUN_NODE = docker-compose run --rm node
 .PHONY: watch
@@ -14,6 +15,9 @@ build:
 .PHONY: install
 install:
 	cp config/config.yaml.dist config/config.yaml
+	cp .env.dist .env
+	@echo "ℹ️ Please do not forget to edit your .env file before trying to push your build in production."
+	@echo "ℹ️ Make sure to edit your config/config.yaml too."
 	${RUN_NODE} npm install
 
 .PHONY: start
