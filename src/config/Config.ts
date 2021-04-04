@@ -22,7 +22,6 @@ interface UsersSettings {
 interface ConfigSettings {
   date_format: string,
   delay_color_after_days: DelayColorAfterDays,
-  notify_on_days: string[],
   discord: DiscordSettings,
   users: UsersSettings[]
 }
