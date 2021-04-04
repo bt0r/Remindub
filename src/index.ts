@@ -3,7 +3,6 @@ import {Github} from "./repository/Github";
 import {Config} from "./config/Config";
 import {logger, userDescription} from "./logger/logger";
 import {DiscordClient} from "./repository/Discord";
-import dayjs from "dayjs";
 
 const config = new Config();
 const github = new Github();
@@ -15,12 +14,6 @@ config.parameters.settings.users.map(async user => {
   user.scheduled_notifications.map(async scheduled_notification => {
     // Instantiate schedules
     scheduleJob(scheduled_notification, async function () {
-      const notifyOnDays = config.parameters.settings.notify_on_days;
-      if(!notifyOnDays.includes(dayjs().format('ddd'))) {
-        logger.info(`Bypassing notification for today.`);
-        return;
-      }
-
       logger.info(`Scheduled job triggered: ${scheduled_notification}`);
       let pullRequests = [];
       for (let i = 0; i < user.repositories.length; i++) {
