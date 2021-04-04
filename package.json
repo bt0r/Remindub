@@ -1,6 +1,6 @@
 {
   "name": "remindub",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Github's pull request reminder for discord",
   "main": "index.js",
   "scripts": {
