@@ -2,7 +2,6 @@
 -include .env
 export
 
-
 RUN_NODE = docker-compose run --rm node
 .PHONY: watch
 watch:
