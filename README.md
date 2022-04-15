@@ -9,8 +9,6 @@ As pull-reminder (ex' pull-panda) have been bought by Github and only allows to 
 
 ![](images/capture.png)
 
-**This project is currently under development, please do not use it in production or at your own risks.**
-
 # Features
 * Allows you to choose notifications days (working days, every day...)
 * Shows different notification colors according to reviews delay
