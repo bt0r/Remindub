@@ -1,6 +1,7 @@
 import i18next, {TFunction} from "i18next";
 import en from "../../translations/translations.en.json";
 import fr from "../../translations/translations.fr.json";
+import es from "../../translations/translations.es.json";
 import Backend from 'i18next-fs-backend';
 
 class Translator {
@@ -17,7 +18,7 @@ class Translator {
         lng: 'fr',
         fallbackLng: "en",
         debug: false,
-        preload: ['en', 'fr'],
+        preload: ['en', 'fr', 'es'],
         ns: ['translations'],
         defaultNS: 'translations',
         backend: {
@@ -29,6 +30,9 @@ class Translator {
           },
           fr: {
             translations: fr
+          },
+          es: {
+            translations: es
           }
         }
       });
