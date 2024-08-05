@@ -35,6 +35,6 @@ lint:
 .PHONY: deploy
 deploy:
 	$(MAKE) build
-	docker compose -f docker-compose.prod.yml build
-	docker compose -f docker-compose.prod.yml push
+	docker compose -f docker-compose.prod.yaml build
+	docker compose -f docker-compose.prod.yaml push
 
