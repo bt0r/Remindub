@@ -8,6 +8,10 @@ module.exports = {
           node: 'current'
         }
       }
+
     ]
+  ],
+  "ignore": [
+    "dist/*", "node_modules/*"
   ]
 }

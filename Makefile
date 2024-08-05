@@ -13,8 +13,7 @@ build:
 
 .PHONY: install
 install:
-	cp config/config.yaml.dist config/config.yaml
-	cp .env.dist .env
+	cp -u config/config.yaml.dist config/config.yaml
 	@echo "ℹ️ Please do not forget to edit your .env file before trying to push your build in production."
 	@echo "ℹ️ Make sure to edit your config/config.yaml too."
 	${RUN_NODE} npm install
@@ -34,9 +33,8 @@ lint:
 # Use to deploy your container
 #
 .PHONY: deploy
-deploy-on-docker:
+deploy:
 	$(MAKE) build
-	echo ${DOCKER_PASSWORD} | docker login https://${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} --password-stdin
-	docker build . -f docker/node/Dockerfile -t ${DOCKER_REGISTRY}${DOCKER_REPOSITORY}:${DOCKER_REPOSITORY_VERSION} --target=prod
-	docker push ${DOCKER_REGISTRY}${DOCKER_REPOSITORY}:${DOCKER_REPOSITORY_VERSION}
+	docker compose -f docker-compose.prod.yml build
+	docker compose -f docker-compose.prod.yml push
 

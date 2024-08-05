@@ -11,11 +11,13 @@ module.exports = {
   plugins: [
     '@typescript-eslint'
   ],
+  ignorePatterns: ["node_modules/*", "dist/*"],
   parserOptions: {
     ecmaVersion: 11,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   rules: {
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+
   }
 }
