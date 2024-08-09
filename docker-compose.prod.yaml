@@ -1,6 +1,6 @@
 services:
   node:
-    image: ghcr.io/bt0r/remindub:latest
+    image: ghcr.io/bt0r/remindub:0.0.2
     platform: linux/amd64
     build:
       context: .
