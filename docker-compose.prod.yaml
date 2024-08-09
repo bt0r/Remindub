@@ -1,10 +1,9 @@
 services:
   node:
-    image: ghcr.io/bt0r/remindub
+    image: ghcr.io/bt0r/remindub:latest
     platform: linux/amd64
     build:
       context: .
       dockerfile: docker/node/Dockerfile
-      target: prod
     volumes:
       - ./:/app
