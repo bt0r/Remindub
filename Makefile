@@ -20,7 +20,7 @@ install:
 
 .PHONY: start
 start:
-	${RUN_NODE} npm start
+	docker compose up
 
 .PHONY: sh
 sh:
