@@ -38,7 +38,7 @@ class Translator {
       });
   }
   t = (...args) => {
-    this.i18next(args)
+    return this.i18next(args)
   }
 }
 

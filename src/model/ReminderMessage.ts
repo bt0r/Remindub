@@ -34,6 +34,10 @@ export const ReminderMessage = (pullrequest: PullRequest): EmbedBuilder => {
     const createdAtFormatted = dayjs(pullrequest.createdAt).format(config.parameters.settings.date_format)
     const delaysInDays = dayjs(new Date()).diff(pullrequest.createdAt, 'days')
     const builder = new EmbedBuilder();
+    const delaySentence = Translator.t('reminder.footer.base', {
+        createdAtFormatted,
+        delay: Translator.t('reminder.footer.delay', {count: delaysInDays})
+    })
 
     return builder
         .setColor(ReminderColor(delaysInDays))
@@ -45,8 +49,7 @@ export const ReminderMessage = (pullrequest: PullRequest): EmbedBuilder => {
         .setImage(pullrequest.author.avatar)
         .setDescription(Translator.t('reminder.description', {username: pullrequest.author.username}))
         .setTimestamp()
-        .setFooter(Translator.t('reminder.footer.base', {
-            createdAtFormatted,
-            delay: Translator.t('reminder.footer.delay', {count: delaysInDays})
-        }));
+        .setFooter({
+            text: delaySentence
+        });
 }
