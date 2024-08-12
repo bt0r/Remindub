@@ -25,14 +25,14 @@ export class DiscordClient {
     sendMessage = (discordId: string, githubUsername: string, pullRequest: PullRequest): void => {
         this.client.users.fetch(discordId).then((user) => {
             user
-                .send(ReminderMessage(pullRequest))
+                .send({
+                    embeds: [ReminderMessage(pullRequest)]
+                })
                 .catch(e => {
-                    console.log(e)
-                    logger.error('Cannot send reminder to user ')
+                    logger.error('Cannot send reminder to user', {discordId, githubUsername, error: e})
                 });
         }).catch(e => {
-            console.log(e);
-            logger.error(`Cannot find discord user ${userDescription(discordId, githubUsername)}`)
+            logger.error(`Cannot find discord user ${userDescription(discordId, githubUsername)}`, {error: e})
         })
     }
 }

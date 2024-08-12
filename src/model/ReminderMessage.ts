@@ -2,7 +2,7 @@ import {EmbedBuilder, RGBTuple} from "discord.js";
 import {PullRequest} from "../repository/Github";
 import dayjs from "dayjs";
 import {Config} from "../config/Config";
-import Translator from "../translator/Translator";
+import i18next from "i18next";
 
 const config = new Config();
 
@@ -34,9 +34,9 @@ export const ReminderMessage = (pullrequest: PullRequest): EmbedBuilder => {
     const createdAtFormatted = dayjs(pullrequest.createdAt).format(config.parameters.settings.date_format)
     const delaysInDays = dayjs(new Date()).diff(pullrequest.createdAt, 'days')
     const builder = new EmbedBuilder();
-    const delaySentence = Translator.t('reminder.footer.base', {
+    const delaySentence = i18next.t('reminder.footer.base', {
         createdAtFormatted,
-        delay: Translator.t('reminder.footer.delay', {count: delaysInDays})
+        delay: i18next.t('reminder.footer.delay', {count: delaysInDays})
     })
 
     return builder
@@ -44,10 +44,10 @@ export const ReminderMessage = (pullrequest: PullRequest): EmbedBuilder => {
         .setTitle(pullrequest.title)
         .setURL(pullrequest.url)
         .setAuthor({
-            name: pullrequest.author.username
+            name: pullrequest.author.username,
+            iconURL: pullrequest.author.avatar
         })
-        .setImage(pullrequest.author.avatar)
-        .setDescription(Translator.t('reminder.description', {username: pullrequest.author.username}))
+        .setDescription(i18next.t('reminder.description', {username: pullrequest.author.username}))
         .setTimestamp()
         .setFooter({
             text: delaySentence
